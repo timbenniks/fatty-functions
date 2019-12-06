@@ -1,11 +1,23 @@
+const fs = require("fs");
+const path = require("path");
+
 module.exports = async function(context, req) {
   if (req.query.weight) {
-    let weightList = [];
+    let rawWeight = fs.readFileSync(
+      path.join(__dirname, "../Shared/weight.json")
+    );
+
+    let weightList = JSON.parse(rawWeight) || [];
 
     weightList.push({
       date: new Date(),
       weight: Number(req.query.weight)
     });
+
+    fs.writeFileSync(
+      path.join(__dirname, "../Shared/weight.json"),
+      JSON.stringify(weightList)
+    );
 
     context.res = {
       status: 200,
