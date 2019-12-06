@@ -19,7 +19,7 @@ module.exports = async function (context, req) {
       const message = `Fattybot: Tim has lost ${lost.toFixed(1)}kg since ${startDate} when he weighed ${startWeight}kg. The goal is to weigh ${goalWeight}kg at the @Frontend_Love Conference on February 19, 2020. Will he get there? See: https://fatty.timbenniks.com #fatty #roadtoamsterdam #weightloss #frontendfeveloperlove #accountability`;
 
       const tweeeeet = TwitterClient
-        .post('statuses/update', {status: "Testing. I will remove this tweet..."})
+        .post('statuses/update', {status: message})
         .then(function (tweet) {
           context.res = {
             body: {
